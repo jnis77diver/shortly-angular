@@ -16,6 +16,7 @@ module.exports = {
           return user.comparePasswords(password)
             .then(function(foundUser) {
               if (foundUser) {
+                console.log("im in sigin");
                 var token = jwt.encode(user, 'secret');
                 res.json({token: token});
               } else {
@@ -31,9 +32,9 @@ module.exports = {
 
   signup: function (req, res, next) {
     var username  = req.body.username,
-        password  = req.body.password,
-        create,
-        newUser;
+      password  = req.body.password,
+      create,
+      newUser;
 
     var findOne = Q.nbind(User.findOne, User);
 
